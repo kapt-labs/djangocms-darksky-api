@@ -18,3 +18,7 @@ class DarkskyApi(CMSPlugin):
         db_index=True,
         help_text=_("e.g.: 4.976723"),
     )
+
+    TEMPLATE_CHOICES = [("SM", "Small"), ("ME", "Medium")]
+
+    template = models.CharField(max_length=2, choices=TEMPLATE_CHOICES, default="SM")
