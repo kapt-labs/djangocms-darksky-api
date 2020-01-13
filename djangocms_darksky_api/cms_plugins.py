@@ -42,6 +42,7 @@ class DarkskyApiPlugin(CMSPluginBase):
 
         context["meteo"] = cached_meteo
 
-        DarkskyApiPlugin.render_template = "darkskyapi_" + instance.template + ".html"
-
         return context
+
+    def get_render_template(self, context, instance, placeholder):
+        return "darkskyapi_" + instance.template_size + ".html"
