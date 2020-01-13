@@ -1,14 +1,15 @@
 import json
-import random
+import requests as re
 
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
-from django.utils import translation
+from django.utils.translation import get_language
 
 from django.core.cache import cache
 
 from .models import DarkskyApi
+from .conf import settings
 
 
 @plugin_pool.register_plugin
@@ -21,10 +22,16 @@ class DarkskyApiPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
         context = super(DarkskyApiPlugin, self).render(context, instance, placeholder)
 
+        if get_language():
+            lang = get_language()
+        else:
+            # default language. bad?
+            lang = "fr"
+
         # key will be in the form "djangocms-darksky-api_fr_latitude_longitude"
         cache_key = (
             "djangocms-darksky-api_"
-            + translation.get_language()
+            + lang
             + "_"
             + str(instance.latitude)
             + "_"
@@ -34,11 +41,15 @@ class DarkskyApiPlugin(CMSPluginBase):
         cached_meteo = cache.get(cache_key)
 
         if not cached_meteo:
-            t = random.randint(1, 50)
-            cache.set(cache_key, json.dumps({"temperature": t}), 60 * 60)  # one hour
-            cached_meteo = json.dumps({"temperature": t})
+            cached_meteo = self.update_data(
+                cache_key, instance.latitude, instance.longitude, lang
+            )
 
         cached_meteo = json.loads(cached_meteo)
+
+        cached_meteo["currently"]["humidity"] = int(
+            cached_meteo["currently"]["humidity"] * 100
+        )
 
         context["meteo"] = cached_meteo
 
@@ -46,3 +57,24 @@ class DarkskyApiPlugin(CMSPluginBase):
 
     def get_render_template(self, context, instance, placeholder):
         return "darkskyapi_" + instance.template_size + ".html"
+
+    def update_data(self, key, lat, lon, lang):
+        # Request like https://api.darksky.net/forecast/[key]/[latitude],[longitude]?exclude=minutely,hourly,alerts&units=auto&lang=fr
+        # See https://darksky.net/dev/docs
+
+        apikey = settings.DJANGOCMS_DARKSKY_API_SETTINGS["api_key"]
+
+        content = re.get(
+            "https://api.darksky.net/forecast/"
+            + apikey
+            + "/"
+            + str(lat)
+            + ","
+            + str(lon)
+            + "?exclude=minutely,hourly,alerts&units=auto&lang="
+            + lang
+        ).json()
+
+        cache.set(key, json.dumps(content), 60 * 60)
+
+        return json.dumps(content)

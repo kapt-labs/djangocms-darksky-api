@@ -1,1 +1,18 @@
-Coming soon
+{% load i18n day_of_week %}
+
+<div class="darksky-medium">
+    <b>{% trans "Currently" %}</b>
+    {% include "darkskyapi_SM.html" %}
+
+    {% for day in meteo.daily.data %}
+        <p><b>{{ day.time|dayofweek }}</b></p>
+
+        <div class="darksky-icon-{{ day.icon }}"></div>
+        <p>{{ day.summary }}</p>
+        <div class="darksky-temperature">
+            {{ day.temperatureLow|floatformat }}
+            -
+            {{ day.temperatureHigh|floatformat }} °C
+        </div>
+    {% endfor %}
+</div>
