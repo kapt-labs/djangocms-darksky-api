@@ -19,8 +19,11 @@ class DarkskyApi(CMSPlugin):
         help_text=_("e.g.: 4.976723"),
     )
 
-    TEMPLATE_CHOICES = [("SM", "Small"), ("ME", "Medium")]
+    TEMPLATE_CHOICES = [("SM", _("Small")), ("ME", _("Medium"))]
 
     template_size = models.CharField(
-        max_length=2, choices=TEMPLATE_CHOICES, default="SM"
+        verbose_name=_("Template size"),
+        max_length=2,
+        choices=TEMPLATE_CHOICES,
+        default="SM",
     )

@@ -63,8 +63,14 @@ class DarkskyApiPlugin(CMSPluginBase):
         # See https://darksky.net/dev/docs
 
         apikey = settings.DJANGOCMS_DARKSKY_API_SETTINGS["api_key"]
+        if not apikey:
+            raise ValueError(
+                _(
+                    "DJANGOCMS_DARKSKY_API_SETTINGS['api_key'] is not set in your app's settings.py file."
+                )
+            )
 
-        content = re.get(
+        url = (
             "https://api.darksky.net/forecast/"
             + apikey
             + "/"
@@ -73,7 +79,14 @@ class DarkskyApiPlugin(CMSPluginBase):
             + str(lon)
             + "?exclude=minutely,hourly,alerts&units=auto&lang="
             + lang
-        ).json()
+        )
+
+        try:
+            content = re.get(url).json()
+        except json.decoder.JSONDecodeError:
+            raise ValueError(
+                _("The api didn't return a json file as expected.\nURL: " + url)
+            )
 
         cache.set(key, json.dumps(content), 60 * 60)
 

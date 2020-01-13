@@ -1,6 +1,6 @@
 <div class="darksky-small">
     <div class="darksky-icon-{{ meteo.currently.icon }}"></div>
-    <div class="darksky-temperature">{{ meteo.currently.temperature }} °C</div>
+    <div class="darksky-temperature">{{ meteo.currently.temperature|floatformat:"0" }} °C</div>
     <div class="darksky-humidity">{{ meteo.currently.humidity }} %</div>
     <div class="darksky-wind">{{ meteo.currently.windSpeed|floatformat }} km/h</div>
 </div>

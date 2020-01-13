@@ -10,9 +10,9 @@
         <div class="darksky-icon-{{ day.icon }}"></div>
         <p>{{ day.summary }}</p>
         <div class="darksky-temperature">
-            {{ day.temperatureLow|floatformat }}
+            {{ day.temperatureLow|floatformat:"0" }}
             -
-            {{ day.temperatureHigh|floatformat }} °C
+            {{ day.temperatureHigh|floatformat:"0" }} °C
         </div>
     {% endfor %}
 </div>
