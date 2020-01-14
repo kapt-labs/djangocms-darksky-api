@@ -1,11 +1,11 @@
-{% load i18n day_of_week %}
+{% load i18n get_datetime_from_timestamp %}
 
 <div class="darksky-medium">
     <b>{% trans "Currently" %}</b>
-    {% include "darkskyapi_SM.html" %}
+    {% include "darkskyapi_light.html" %}
 
     {% for day in meteo.daily.data %}
-        <p><b>{{ day.time|dayofweek }}</b></p>
+        <p><b>{{ day.time|get_datetime|date:"l" }}</b></p>
 
         <div class="darksky-icon-{{ day.icon }}"></div>
         <p>{{ day.summary }}</p>

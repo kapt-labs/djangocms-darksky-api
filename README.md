@@ -80,11 +80,17 @@ All values are returned using the International System (°C, km/h, ...) and are 
 
 ### Language
 
-The language is searched using `django.utils.translation.get_language()`. If the result is `None` (language not set), the custom summaries are in English.
+The language is searched using `django.utils.translation.get_language()` & `django.conf.LANGUAGE_CODE`.
 
 Languages supported by the Dark Sky api can be found on [their documentation](https://darksky.net/dev/docs#request-parameters).
 
 ### Cache
+
+#### Plugin
+
+The plugin is cached (with the same duration as the json content).
+
+#### Json
 
 The values are cached for one hour (which avoids hundreds of thousands of queries per day on the darksky api site).
 
