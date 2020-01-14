@@ -21,6 +21,11 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
  ```
  DJANGOCMS_DARKSKY_API_SETTINGS = {"api_key": "your key here"}
  ```
+ * *Or load it using an environment var:*
+ ```
+ import os
+ DJANGOCMS_DARKSKY_API_SETTINGS = {"api_key": os.getenv("DARKSKY_API_KEY", None)}
+ ```
  5. Include weather plugin on your pages using djangocms
  ![Add dark sky api plugin](https://user-images.githubusercontent.com/45763865/72329144-83b65800-36b4-11ea-832a-f87c32ba95e1.png)
  6. ![That's all folks!](https://i.imgur.com/o2Tcd2E.png)
