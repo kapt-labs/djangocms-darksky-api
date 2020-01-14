@@ -69,7 +69,7 @@ Css classes for the icons (e.g. `<div class="darksky-icon-rain"></div>`) are of 
 
 ### Units
 
-All values are returned using th International System (°C, km/h, ...) and are hard-coded in templates files.
+All values are returned using the International System (°C, km/h, ...) and are hard-coded in templates files.
 
 ----
 
