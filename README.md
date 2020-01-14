@@ -29,14 +29,20 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 
 ### Raw results
 
- * Small template:
- ![small template raw](https://user-images.githubusercontent.com/45763865/72332449-5b315c80-36ba-11ea-915e-5b374f402f39.png)
- * Medium template:
- ![medium template raw](https://user-images.githubusercontent.com/45763865/72332761-e6aaed80-36ba-11ea-9edc-44d7d4e492eb.png)
+#### Small template
+
+![small template raw](https://user-images.githubusercontent.com/45763865/72332449-5b315c80-36ba-11ea-915e-5b374f402f39.png)
+
+#### Medium template
+
+![medium template raw](https://user-images.githubusercontent.com/45763865/72332761-e6aaed80-36ba-11ea-9edc-44d7d4e492eb.png)
 
 ### Examples of rendered views
 
- * Small template:
- ![small template rendered](https://user-images.githubusercontent.com/45763865/72326793-2ae4c080-36b0-11ea-9e51-614c845b382d.png)
- * Medium template:
- ![medium template rendered](https://user-images.githubusercontent.com/45763865/72326898-5d8eb900-36b0-11ea-90b5-9efa40fb3caf.png)
+#### Small template
+
+![small template rendered](https://user-images.githubusercontent.com/45763865/72326793-2ae4c080-36b0-11ea-9e51-614c845b382d.png)
+
+#### Medium template:
+
+![medium template rendered](https://user-images.githubusercontent.com/45763865/72326898-5d8eb900-36b0-11ea-90b5-9efa40fb3caf.png)
