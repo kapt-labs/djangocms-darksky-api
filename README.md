@@ -1,4 +1,4 @@
-![djangocms-darksky-api](https://user-images.githubusercontent.com/45763865/72326603-c0338500-36af-11ea-9c74-e3f07b4a79bb.png)
+![djangocms-darksky-api](https://user-images.githubusercontent.com/45763865/72337621-2bd31d80-36c3-11ea-9508-80885453639e.png)
 
 The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 
