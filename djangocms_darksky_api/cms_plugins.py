@@ -77,12 +77,22 @@ class DarkskyApiPlugin(CMSPluginBase):
             + str(lat)
             + ","
             + str(lon)
-            + "?exclude=minutely,hourly,alerts&units=auto&lang="
+            + "?exclude=minutely,hourly,alerts&units=si&lang="
             + lang
         )
 
         try:
             content = re.get(url).json()
+
+            # raise error & darksky error msg
+            try:
+                content["code"]
+                if content["code"] == 400:
+                    raise ValueError(_(content["error"]))
+            # if no error then its all good
+            except KeyError:
+                pass
+
         except json.decoder.JSONDecodeError:
             raise ValueError(
                 _("The api didn't return a json file as expected.\nURL: " + url)

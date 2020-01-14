@@ -46,3 +46,35 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 #### Medium template:
 
 ![medium template rendered](https://user-images.githubusercontent.com/45763865/72326898-5d8eb900-36b0-11ea-90b5-9efa40fb3caf.png)
+
+## Miscellaneous
+
+### Css
+
+Css classes for the icons (e.g. `<div class="darksky-icon-rain"></div>`) are of the form `darksky-icon-[name]`.
+
+`[name]` can be any of the following values (see [darksky doc](https://darksky.net/dev/docs#data-point)):
+ * clear-day
+ * clear-night
+ * rain
+ * snow
+ * sleet
+ * wind
+ * fog
+ * cloudy
+ * partly-cloudy-day
+ * partly-cloudy-night
+
+----
+
+### Units
+
+All values are returned using th International System (°C, km/h, ...) and are hard-coded in templates files.
+
+----
+
+### Language
+
+The language is searched using `django.utils.translation.get_language()`. If the result is `None` (language not set), the custom summaries are in English.
+
+Languages supported by the Dark Sky api can be found on [their documentation](https://darksky.net/dev/docs#request-parameters).
