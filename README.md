@@ -29,11 +29,11 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 
 ### Raw results
 
-#### Small template
+#### Small template (view & src)
 
 ![small template raw](https://user-images.githubusercontent.com/45763865/72333114-92ecd400-36bb-11ea-86ff-60bbdf21db9c.png)
 
-#### Medium template
+#### Medium template (view & src)
 
 ![medium template raw](https://user-images.githubusercontent.com/45763865/72333144-a13af000-36bb-11ea-9890-27eb37636145.png)
 
