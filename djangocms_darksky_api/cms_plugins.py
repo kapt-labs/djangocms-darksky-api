@@ -38,15 +38,19 @@ class DarkskyApiPlugin(CMSPluginBase):
             + str(instance.longitude)
         )
 
+        # get content from cache
         cached_meteo = cache.get(cache_key)
 
         if not cached_meteo:
+            print("NO CACHE")
+            # or get content from api call (& store it to the cache too)
             cached_meteo = self.update_data(
                 cache_key, instance.latitude, instance.longitude, lang
             )
 
         cached_meteo = json.loads(cached_meteo)
 
+        # from value between 0 - 1 to percentage
         cached_meteo["currently"]["humidity"] = int(
             cached_meteo["currently"]["humidity"] * 100
         )
@@ -56,10 +60,11 @@ class DarkskyApiPlugin(CMSPluginBase):
         return context
 
     def get_render_template(self, context, instance, placeholder):
+        # return template name according to instance values
         return "darkskyapi_" + instance.template_size + ".html"
 
     def update_data(self, key, lat, lon, lang):
-        # Request like https://api.darksky.net/forecast/[key]/[latitude],[longitude]?exclude=minutely,hourly,alerts&units=auto&lang=fr
+        # Request like https://api.darksky.net/forecast/[key]/[latitude],[longitude]?exclude=minutely,hourly,alerts,flags&units=si&lang=[lang]
         # See https://darksky.net/dev/docs
 
         apikey = settings.DJANGOCMS_DARKSKY_API_SETTINGS["api_key"]
@@ -77,7 +82,7 @@ class DarkskyApiPlugin(CMSPluginBase):
             + str(lat)
             + ","
             + str(lon)
-            + "?exclude=minutely,hourly,alerts&units=si&lang="
+            + "?exclude=minutely,hourly,alerts,flags&units=si&lang="
             + lang
         )
 
@@ -98,6 +103,9 @@ class DarkskyApiPlugin(CMSPluginBase):
                 _("The api didn't return a json file as expected.\nURL: " + url)
             )
 
-        cache.set(key, json.dumps(content), 60 * 60)
+        # set cache duration according to settings value
+        cache.set(
+            key, json.dumps(content), settings.DJANGOCMS_DARKSKY_API_SETTINGS["cache"]
+        )
 
         return json.dumps(content)
