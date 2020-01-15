@@ -1,3 +1,6 @@
 include LICENCE
 include README.md
 recursive-include djangocms_darksky_api/conf *
+recursive-include djangocms_darksky_api/templates *
+recursive-include djangocms_darksky_api/locale *
+
