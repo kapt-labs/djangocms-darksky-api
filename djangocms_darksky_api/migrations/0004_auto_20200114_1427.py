@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='darkskyapi',
             name='template',
-            field=models.CharField(choices=[('light', 'Light'), ('full', 'Full')], default='light', max_length=2, verbose_name='Template'),
+            field=models.CharField(choices=[('light', 'Light'), ('full', 'Full')], default='light', max_length=5, verbose_name='Template'),
         ),
     ]
+

@@ -5,9 +5,13 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 ## Installation
 
 
- 1. Install module:
+ 1. Install module using pipenv:
  ```
  pipenv install -e git+https://github.com/kapt-labs/djangocms-darksky-api.git#egg=djangocms-darksky-api
+ ```
+ * *Or pip:*
+ ```
+ pip install git+https://github.com/kapt-labs/djangocms-darksky-api.git
  ```
  2. Add it to your installed apps:
  ```

@@ -55,9 +55,6 @@ class DarkskyApiPlugin(CMSPluginBase):
 
         context["meteo"] = cached_meteo
 
-        # remove yesterday & today from the list
-        # context["meteo"]["daily"]["data"] = context["meteo"]["daily"]["data"][2:]
-
         return context
 
     def get_render_template(self, context, instance, placeholder):
