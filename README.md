@@ -60,7 +60,7 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 
 ### Css
 
-Css classes for the icons (e.g. `<div class="darksky-icon-rain"></div>`) are of the form `darksky-icon-[name]`.
+Css classes for the icons (e.g. `<div class="darksky-icon darksky-rain"></div>`) are of the form `darksky-icon darksky-[name]`.
 
 `[name]` can be any of the following values (see [darksky doc](https://darksky.net/dev/docs#data-point)):
  * clear-day
