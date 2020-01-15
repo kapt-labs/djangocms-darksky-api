@@ -7,11 +7,11 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 
  1. Install module using pipenv:
  ```
- pipenv install -e git+https://github.com/kapt-labs/djangocms-darksky-api.git#egg=djangocms-darksky-api
+ pipenv install djangocms-darksky-api
  ```
  * *Or pip:*
  ```
- pip install git+https://github.com/kapt-labs/djangocms-darksky-api.git
+ pip install djangocms-darksky-api
  ```
  2. Add it to your installed apps:
  ```
@@ -38,23 +38,23 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 
 ### Raw results
 
-#### Small template (view & src)
+#### Light template (view & src)
 
-![small template raw](https://user-images.githubusercontent.com/45763865/72333114-92ecd400-36bb-11ea-86ff-60bbdf21db9c.png)
+![light template raw](https://user-images.githubusercontent.com/45763865/72333114-92ecd400-36bb-11ea-86ff-60bbdf21db9c.png)
 
-#### Medium template (view & src)
+#### Full template (view & src)
 
-![medium template raw](https://user-images.githubusercontent.com/45763865/72333144-a13af000-36bb-11ea-9890-27eb37636145.png)
+![full template raw](https://user-images.githubusercontent.com/45763865/72333144-a13af000-36bb-11ea-9890-27eb37636145.png)
 
 ### Examples of rendered views
 
-#### Small template
+#### Light template
 
-![small template rendered](https://user-images.githubusercontent.com/45763865/72326793-2ae4c080-36b0-11ea-9e51-614c845b382d.png)
+![light template rendered](https://user-images.githubusercontent.com/45763865/72326793-2ae4c080-36b0-11ea-9e51-614c845b382d.png)
 
-#### Medium template:
+#### Full template:
 
-![medium template rendered](https://user-images.githubusercontent.com/45763865/72326898-5d8eb900-36b0-11ea-90b5-9efa40fb3caf.png)
+![full template rendered](https://user-images.githubusercontent.com/45763865/72326898-5d8eb900-36b0-11ea-90b5-9efa40fb3caf.png)
 
 ## Miscellaneous
 
