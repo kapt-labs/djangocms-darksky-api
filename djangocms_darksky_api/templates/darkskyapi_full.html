@@ -7,7 +7,7 @@
     {% for day in meteo.daily.data %}
         <p><b>{{ day.time|get_datetime|date:"l" }}</b></p>
 
-        <div class="darksky-icon-{{ day.icon }}"></div>
+        <div class="darksky-icon darksky-{{ day.icon }}"></div>
         <p>{{ day.summary }}</p>
         <div class="darksky-temperature">
             {{ day.temperatureLow|floatformat:"0" }}
