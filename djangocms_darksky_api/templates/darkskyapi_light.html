@@ -1,6 +1,10 @@
-<div class="darksky-small">
-    <div class="darksky-icon darksky-{{ meteo.currently.icon }}"></div>
-    <div class="darksky-temperature">{{ meteo.currently.temperature|floatformat:"0" }} °C</div>
-    <div class="darksky-humidity">{{ meteo.currently.humidity }} %</div>
-    <div class="darksky-wind">{{ meteo.currently.windSpeed|floatformat }} km/h</div>
-</div>
+{% if meteo.error %}
+    <div class="darksky-error" data-error-msg="{{ meteo.error }}"></div>
+{% else %}
+    <div class="darksky-small">
+        <div class="darksky-icon darksky-{{ meteo.currently.icon }}"></div>
+        <div class="darksky-temperature">{{ meteo.currently.temperature|floatformat:"0" }} °C</div>
+        <div class="darksky-humidity">{{ meteo.currently.humidity }} %</div>
+        <div class="darksky-wind">{{ meteo.currently.windSpeed|floatformat }} km/h</div>
+    </div>
+{% endif %}

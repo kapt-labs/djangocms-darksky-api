@@ -1,20 +1,24 @@
 {% load i18n get_datetime_from_timestamp %}
 
-<div class="darksky-medium">
-    <b>{% trans "Currently" %}</b>
-    {% include "darkskyapi_light.html" %}
+{% if meteo.error %}
+    <div class="darksky-error" data-error-msg="{{ meteo.error }}"></div>
+{% else %}
+    <div class="darksky-medium">
+        <b>{% trans "Currently" %}</b>
+        {% include "darkskyapi_light.html" %}
 
-    {% for day in meteo.daily.data %}
-        <p><b>{{ day.time|get_datetime|date:"l" }}</b></p>
+        {% for day in meteo.daily.data %}
+            <p><b>{{ day.time|get_datetime|date:"l" }}</b></p>
 
-        <div class="darksky-icon darksky-{{ day.icon }}"></div>
-        <p>{{ day.summary }}</p>
-        <div class="darksky-temperature">
-            {{ day.temperatureLow|floatformat:"0" }}
-            -
-            {{ day.temperatureHigh|floatformat:"0" }} °C
-        </div>
-    {% endfor %}
-</div>
+            <div class="darksky-icon darksky-{{ day.icon }}"></div>
+            <p>{{ day.summary }}</p>
+            <div class="darksky-temperature">
+                {{ day.temperatureLow|floatformat:"0" }}
+                -
+                {{ day.temperatureHigh|floatformat:"0" }} °C
+            </div>
+        {% endfor %}
+    </div>
 
-<div class="darksky-credits"><a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a></div>
+    <div class="darksky-credits"><a href="https://darksky.net/poweredby/" target="_blank">Powered by Dark Sky</a></div>
+{% endif %}

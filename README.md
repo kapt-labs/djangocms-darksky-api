@@ -40,11 +40,18 @@ The weather plugin that links djangocms and [Dark Sky](https://darksky.net/).
 
 #### Light template (view & src)
 
-![light template raw](https://user-images.githubusercontent.com/45763865/72333114-92ecd400-36bb-11ea-86ff-60bbdf21db9c.png)
+![light template raw](https://user-images.githubusercontent.com/45763865/73655044-6cec9b00-468d-11ea-9cf8-ea939abf105b.png)
 
 #### Full template (view & src)
 
-![full template raw](https://user-images.githubusercontent.com/45763865/72333144-a13af000-36bb-11ea-9890-27eb37636145.png)
+![full template raw](https://user-images.githubusercontent.com/45763865/73654926-27c86900-468d-11ea-9068-21fd7b88ce75.png)
+
+#### Error msg (if api.darksky.net is down)
+
+
+As the darksky api will sometimes suffer [downtimes](https://status.darksky.net/), the plugin can display an error message ("*Data is currently unavailable.*"), embedded in a dataset.
+
+![error message code](https://user-images.githubusercontent.com/45763865/73657218-1afa4400-4692-11ea-8de2-84498a82c743.png)
 
 ### Examples of rendered views
 
@@ -87,6 +94,8 @@ All values are returned using the International System (°C, km/h, ...) and are 
 The language is searched using `django.utils.translation.get_language()` & `django.conf.LANGUAGE_CODE`.
 
 Languages supported by the Dark Sky api can be found on [their documentation](https://darksky.net/dev/docs#request-parameters).
+
+----
 
 ### Cache
 

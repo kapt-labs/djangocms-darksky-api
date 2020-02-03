@@ -4,6 +4,7 @@ import requests as re
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 from django.utils.translation import ugettext_lazy as _
+from requests.exceptions import ConnectionError
 from django.utils.translation import get_language
 from django.conf import settings
 
@@ -50,8 +51,8 @@ class DarkskyApiPlugin(CMSPluginBase):
             cached_meteo["currently"]["humidity"] = int(
                 cached_meteo["currently"]["humidity"] * 100
             )
-        except KeyError:
-            print(cached_meteo)
+        except KeyError:  # should not appear, unless if api is down ?
+            pass
 
         context["meteo"] = cached_meteo
 
@@ -99,11 +100,22 @@ class DarkskyApiPlugin(CMSPluginBase):
                 _("The api didn't return a json file as expected.\nURL: " + url)
             )
 
+        # if api is down
+        except ConnectionError:
+            content = {"error": "Data is currently unavailable."}
+            skip_cache = True
+
         txt_content = json.dumps(content)
 
-        # set cache duration according to settings value
-        cache.set(
-            key, txt_content, plugin_settings.DJANGOCMS_DARKSKY_API_SETTINGS["cache"],
-        )
+        # prevent error msg to be cached (force reload for each refresh of the page until we get content from api)
+        try:
+            skip_cache
+        except NameError:
+            # set cache duration according to settings value
+            cache.set(
+                key,
+                txt_content,
+                plugin_settings.DJANGOCMS_DARKSKY_API_SETTINGS["cache"],
+            )
 
         return txt_content
